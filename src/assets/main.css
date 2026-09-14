@@ -109,3 +109,85 @@ button { font-family: inherit; }
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ============ Animated background ============ */
+.bg-decor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-decor > * { pointer-events: none; }
+
+/* Медленно плавающие цветные пятна */
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: blobFloat 22s ease-in-out infinite;
+  will-change: transform;
+  mix-blend-mode: multiply;   /* ← ключевое: пятна проявляются на светлом фоне */
+}
+.bg-blob--1 { animation-delay: 0s; }
+.bg-blob--2 { animation-delay: -8s; }
+.bg-blob--3 { animation-delay: -14s; }
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(50px, -40px, 0) scale(1.12); }
+  66%      { transform: translate3d(-40px, 40px, 0) scale(.92); }
+}
+
+/* Мелкие плавающие точки */
+.bg-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  animation: dotFloat 12s ease-in-out infinite;
+}
+@keyframes dotFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1);   opacity: .35; }
+  50%      { transform: translate3d(24px, -36px, 0) scale(1.6); opacity: .75; }
+}
+
+/* Пунктирная сетка */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(43,38,34,.18) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 80%);
+  opacity: .8;
+  animation: gridPan 40s linear infinite;
+}
+@keyframes gridPan {
+  from { background-position: 0 0; }
+  to   { background-position: 28px 28px; }
+}
+
+/* Мобильным — облегчаем: сетку прячем, пятен меньше */
+@media (max-width: 640px) {
+  .bg-grid { display: none; }
+  .bg-blob { filter: blur(60px); }
+}
+
+/* ============ Fullscreen snap scroll ============ */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
+body {
+  /* Ничего не меняем — снап работает на скролл-контейнере */
+}
+
+/* Snap включаем только на больших экранах и при желании пользователя */
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  main {
+    scroll-snap-type: y proximity;  /* ← proximity мягче, чем mandatory */
+  }
+}
+

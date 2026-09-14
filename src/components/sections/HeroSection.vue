@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import AnimatedBackground from '@/components/ui/AnimatedBackground.vue'
 import { useTelegram } from '@/composables/useTelegram'
 
 const { openChannel } = useTelegram()
@@ -10,6 +11,7 @@ const stats = [
   { value: '−90%',  label: 'экономия' },
   { value: '4–6',   label: 'недель' },
 ]
+
 
 // Параллакс от курсора
 const mouse = ref({ x: 0, y: 0 })
@@ -27,10 +29,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 
 <template>
   <section class="hero">
-    <!-- Декоративные пятна -->
-    <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
-    <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
-    <div class="hero__blob hero__blob--3" aria-hidden="true"></div>
+     <AnimatedBackground />
 
     <div class="hero__inner">
       <!-- Левая колонка -->
@@ -116,30 +115,6 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   padding: clamp(56px, 8vw, 110px) 0 clamp(72px, 9vw, 130px);
 }
 
-.hero__blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: .55;
-  pointer-events: none;
-}
-.hero__blob--1 {
-  width: 560px; height: 560px;
-  background: #f1d9c7;
-  top: -180px; left: -140px;
-}
-.hero__blob--2 {
-  width: 520px; height: 520px;
-  background: #e0e7d8;
-  bottom: -200px; right: -120px;
-}
-.hero__blob--3 {
-  width: 380px; height: 380px;
-  background: #f5dfda;
-  top: 40%; left: 40%;
-  opacity: .35;
-}
-
 .hero__inner {
   position: relative;
   max-width: 1180px;
@@ -149,6 +124,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   grid-template-columns: 1.05fr 1fr;
   gap: clamp(32px, 5vw, 80px);
   align-items: center;
+  z-index: 1;
 }
 
 /* -------- Копия -------- */
@@ -323,15 +299,55 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 }
 
 /* -------- Адаптив -------- */
+@media (max-width: 1000px) {
+  .hero__float--price { left: 4%; bottom: 4%; }
+  .hero__float--ship  { left: 8%; top: 4%; }
+}
+
+/* Планшет/большой телефон: одна колонка, галерея сверху */
 @media (max-width: 900px) {
   .hero__inner {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
-  .hero__copy { max-width: 100%; text-align: center; margin: 0 auto; }
+  .hero__copy {
+    max-width: 100%;
+    text-align: center;
+    order: 2;                 /* текст — снизу */
+  }
+  .hero__gallery {
+    order: 1;                 /* галерея — сверху */
+    max-width: 460px;
+    margin: 0 auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
   .hero__lead, .hero__title { margin-left: auto; margin-right: auto; }
   .hero__actions { justify-content: center; }
-  .hero__stats { justify-content: center; }
-  .hero__gallery { max-width: 480px; margin: 0 auto; }
+  .hero__stats   { justify-content: center; }
+
+  /* Плашки внутри галереи, не выходят за границы */
+  .hero__float--price { left: 6%; bottom: 8%; }
+  .hero__float--ship  { left: 4%; top: 6%; }
+}
+
+/* Телефон: полностью убираем коллаж и плашки */
+@media (max-width: 640px) {
+  .hero__gallery { display: none; }
+
+  .hero__copy { text-align: center; }
+
+  .hero__stats {
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .hero__stats strong { font-size: 22px; }
+  .hero__stats span   { font-size: 11px; }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero__actions :deep(.btn) { width: 100%; }
 }
 </style>
