@@ -1,45 +1,92 @@
-/* ===== Reset ===== */
+/* ============ Design tokens ============ */
+:root {
+  /* Палитра */
+  --c-bg: #ffffff;
+  --c-bg-soft: #f7f8fb;
+  --c-bg-mute: #eef1f6;
+  --c-ink: #0d1220;
+  --c-ink-2: #2a3142;
+  --c-ink-3: #6b7280;
+  --c-line: #e6e9f0;
+
+  --c-accent: #2b7fff;
+  --c-accent-2: #6c5ce7;
+  --c-accent-soft: #eaf1ff;
+
+  /* Градиенты */
+  --g-accent: linear-gradient(135deg, #2b7fff 0%, #6c5ce7 100%);
+  --g-hero: radial-gradient(1200px 600px at 20% -10%, #e6f0ff 0%, transparent 60%),
+            radial-gradient(900px 500px at 100% 0%, #efeaff 0%, transparent 55%),
+            #ffffff;
+
+  /* Тени */
+  --sh-sm: 0 1px 2px rgba(13,18,32,.06), 0 1px 1px rgba(13,18,32,.04);
+  --sh-md: 0 8px 24px rgba(13,18,32,.08);
+  --sh-lg: 0 20px 50px rgba(13,18,32,.12);
+  --sh-accent: 0 12px 30px rgba(43,127,255,.35);
+
+  /* Радиусы */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+
+  /* Отступы секций */
+  --s-py: clamp(64px, 8vw, 120px);
+
+  /* Типографика */
+  --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ============ Reset ============ */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 88px;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--f-sans);
   font-size: 16px;
-  line-height: 1.5;
-  color: #111;
-  background: #fff;
+  line-height: 1.55;
+  color: var(--c-ink);
+  background: var(--c-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01', 'cv11';
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
   margin: 0;
   font-weight: 700;
-  color: #111;
+  color: var(--c-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-p { margin: 0; }
+h1 { font-size: clamp(32px, 5.2vw, 60px); }
+h2 { font-size: clamp(26px, 3.6vw, 44px); }
+h3 { font-size: clamp(17px, 1.4vw, 20px); }
 
-a { color: inherit; }
+p { margin: 0; color: var(--c-ink-2); }
+
+a { color: inherit; text-decoration: none; }
 
 img, svg { display: block; max-width: 100%; }
 
 button { font-family: inherit; }
 
-/* ===== App container ===== */
+::selection { background: var(--c-accent-soft); color: var(--c-accent); }
+
+/* ============ App container ============ */
 #app {
+  display: block;
   max-width: 100%;
   margin: 0;
   padding: 0;
-  display: block; /* ← важно: убираем flex/grid из шаблона */
 }

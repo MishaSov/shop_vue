@@ -8,15 +8,18 @@ const { openChannel, contacts } = useTelegram()
 </script>
 
 <template>
-  <BaseSection id="contacts">
+  <BaseSection id="contacts" tone="mute">
     <SectionTitle
+      eyebrow="Контакты"
       title="Готовы к шопингу мечты?"
       subtitle="Напишите нам — подберём, рассчитаем и привезём"
     />
-    <div class="contacts">
-      <BaseButton @click="openChannel">Telegram-канал</BaseButton>
-      <a :href="contacts.whatsapp" target="_blank" rel="noopener" class="contacts__link">
-        WhatsApp: {{ contacts.phone }}
+    <div class="cta">
+      <BaseButton size="lg" @click="openChannel">
+        Перейти в Telegram-канал
+      </BaseButton>
+      <a :href="contacts.whatsapp" target="_blank" rel="noopener" class="cta__link">
+        WhatsApp · {{ contacts.phone }}
       </a>
     </div>
     <div class="legal">
@@ -28,7 +31,29 @@ const { openChannel, contacts } = useTelegram()
 </template>
 
 <style scoped>
-.contacts { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 48px; }
-.contacts__link { color: #229ED9; text-decoration: none; font-weight: 500; }
-.legal { text-align: center; color: #999; font-size: 13px; line-height: 1.7; }
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 56px;
+}
+.cta__link {
+  color: var(--c-ink-2);
+  font-weight: 600;
+  font-size: 15px;
+  border-bottom: 1px dashed var(--c-line);
+  padding-bottom: 2px;
+  transition: color .18s ease, border-color .18s ease;
+}
+.cta__link:hover { color: var(--c-accent); border-color: var(--c-accent); }
+
+.legal {
+  text-align: center;
+  color: var(--c-ink-3);
+  font-size: 13px;
+  line-height: 1.8;
+  opacity: .8;
+}
+.legal p + p { margin-top: 2px; }
 </style>

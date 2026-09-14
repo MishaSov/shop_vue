@@ -7,6 +7,7 @@ import { steps } from '@/data/steps'
 <template>
   <BaseSection id="how">
     <SectionTitle
+      eyebrow="Процесс"
       title="Как сделать заказ"
       subtitle="Всего четыре шага — от заявки до получения посылки"
     />
@@ -23,30 +24,36 @@ import { steps } from '@/data/steps'
 <style scoped>
 .steps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
   list-style: none;
   padding: 0;
   margin: 0;
-  counter-reset: step;
 }
 .steps__item {
   position: relative;
-  padding: 28px 24px;
-  background: #f7f9fc;
-  border-radius: 16px;
+  padding: 32px 28px;
+  background: #fff;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--sh-sm);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.steps__item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lg);
 }
 .steps__num {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #229ED9;
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: var(--g-accent);
   color: #fff;
-  display: grid;
-  place-items: center;
+  display: grid; place-items: center;
   font-weight: 700;
-  margin-bottom: 16px;
+  font-size: 18px;
+  box-shadow: var(--sh-accent);
+  margin-bottom: 20px;
 }
-.steps__item h3 { font-size: 17px; margin: 0 0 8px; }
-.steps__item p { color: #666; font-size: 15px; line-height: 1.5; margin: 0; }
+.steps__item h3 { font-size: 18px; margin-bottom: 8px; }
+.steps__item p  { color: var(--c-ink-3); font-size: 15px; line-height: 1.55; }
 </style>

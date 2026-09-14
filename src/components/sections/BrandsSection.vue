@@ -7,11 +7,12 @@ import { brands } from '@/data/brands'
 <template>
   <BaseSection id="brands">
     <SectionTitle
+      eyebrow="Бренды"
       title="С какими брендами работаем"
       subtitle="И сотни других — просто напишите, что ищете"
     />
     <ul class="brands">
-      <li v-for="brand in brands" :key="brand">{{ brand }}</li>
+      <li v-for="brand in brands" :key="brand" class="brands__item">{{ brand }}</li>
     </ul>
   </BaseSection>
 </template>
@@ -26,10 +27,23 @@ import { brands } from '@/data/brands'
   padding: 0;
   margin: 0;
 }
-.brands li {
-  padding: 10px 20px;
-  background: #f5f5f7;
+.brands__item {
+  padding: 12px 22px;
+  background: #fff;
+  border: 1px solid var(--c-line);
   border-radius: 999px;
   font-weight: 500;
+  font-size: 15px;
+  color: var(--c-ink-2);
+  box-shadow: var(--sh-sm);
+  transition: transform .18s ease, border-color .18s ease,
+              color .18s ease, box-shadow .18s ease;
+  cursor: default;
+}
+.brands__item:hover {
+  transform: translateY(-3px);
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  box-shadow: var(--sh-md);
 }
 </style>

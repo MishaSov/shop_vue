@@ -3,43 +3,53 @@ import BaseSection from '@/components/ui/BaseSection.vue'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 
 const benefits = [
-  { icon: '✅', title: 'Только оригинал', text: 'Работаем с официальными сайтами и магазинами' },
-  { icon: '💸', title: 'Экономия до 90%', text: 'Цены в США в разы ниже, чем в РФ' },
-  { icon: '🔍', title: 'Подбор по фото', text: 'Найдём вещь по картинке, ссылке или названию' },
+  { icon: '✅', title: 'Только оригинал',      text: 'Работаем с официальными сайтами и магазинами' },
+  { icon: '💸', title: 'Экономия до 90%',      text: 'Цены в США в разы ниже, чем в России' },
+  { icon: '🔍', title: 'Подбор по фото',       text: 'Найдём вещь по картинке, ссылке или названию' },
   { icon: '📦', title: 'Полное сопровождение', text: 'От заявки до получения посылки' },
 ]
 </script>
 
 <template>
-  <BaseSection id="benefits">
-    <SectionTitle title="Наши преимущества" />
-    <div class="benefits">
-      <article v-for="b in benefits" :key="b.title" class="benefits__card">
-        <div class="benefits__icon">{{ b.icon }}</div>
-        <h3>{{ b.title }}</h3>
-        <p>{{ b.text }}</p>
+  <BaseSection id="benefits" tone="soft">
+    <SectionTitle eyebrow="Преимущества" title="Что вы получаете" />
+    <div class="grid">
+      <article v-for="b in benefits" :key="b.title" class="card">
+        <div class="card__icon">{{ b.icon }}</div>
+        <h3 class="card__title">{{ b.title }}</h3>
+        <p class="card__text">{{ b.text }}</p>
       </article>
     </div>
   </BaseSection>
 </template>
 
 <style scoped>
-.benefits {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 20px;
 }
-.benefits__card {
-  padding: 28px 24px;
-  background: #f7f9fc;
+.card {
+  padding: 32px 28px;
+  background: #fff;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--sh-sm);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lg);
+  border-color: transparent;
+}
+.card__icon {
+  font-size: 30px;
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
   border-radius: 16px;
-  transition: transform .2s, box-shadow .2s;
+  background: var(--c-accent-soft);
+  margin-bottom: 20px;
 }
-.benefits__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,.06);
-}
-.benefits__icon { font-size: 32px; margin-bottom: 12px; }
-.benefits__card h3 { font-size: 18px; margin: 0 0 8px; }
-.benefits__card p { color: #666; font-size: 15px; line-height: 1.5; margin: 0; }
+.card__title { margin-bottom: 8px; font-size: 18px; }
+.card__text  { color: var(--c-ink-3); font-size: 15px; line-height: 1.55; }
 </style>

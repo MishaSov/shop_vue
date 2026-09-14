@@ -3,23 +3,23 @@ import BaseSection from '@/components/ui/BaseSection.vue'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 
 const info = [
-  { label: 'Стоимость', value: '2,5–3,5 ₽ за грамм' },
-  { label: 'Срок', value: 'В среднем 4–6 недель' },
-  { label: 'Ускоренная', value: '10–14 дней' },
-  { label: 'Курс', value: '1$ = 135–145 ₽' },
+  { label: 'Стоимость',   value: '2,5–3,5 ₽ / грамм' },
+  { label: 'Срок',        value: '4–6 недель' },
+  { label: 'Ускоренная',  value: '10–14 дней' },
+  { label: 'Курс',        value: '1$ = 135–145 ₽' },
 ]
 </script>
 
 <template>
-  <BaseSection id="delivery">
-    <SectionTitle title="Оплата и доставка" />
-    <div class="delivery">
-      <div v-for="item in info" :key="item.label" class="delivery__item">
-        <span class="delivery__label">{{ item.label }}</span>
-        <span class="delivery__value">{{ item.value }}</span>
+  <BaseSection id="delivery" tone="soft">
+    <SectionTitle eyebrow="Оплата и доставка" title="Прозрачные условия" />
+    <div class="grid">
+      <div v-for="item in info" :key="item.label" class="card">
+        <span class="card__label">{{ item.label }}</span>
+        <span class="card__value">{{ item.value }}</span>
       </div>
     </div>
-    <p class="delivery__note">
+    <p class="note">
       Оплата 100% перед выкупом. Возврат исключён, но поможем «пристроить»
       вещь, если не подошла. Все подтверждающие документы предоставляем.
     </p>
@@ -27,27 +27,39 @@ const info = [
 </template>
 
 <style scoped>
-.delivery {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
-.delivery__item {
-  padding: 24px;
-  background: #f7f9fc;
-  border-radius: 14px;
+.card {
+  padding: 28px 24px;
+  background: #fff;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--sh-sm);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
-.delivery__label { color: #888; font-size: 14px; }
-.delivery__value { font-size: 18px; font-weight: 600; }
-.delivery__note {
+.card__label {
+  color: var(--c-ink-3);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 600;
+}
+.card__value {
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.note {
   max-width: 780px;
   margin: 0 auto;
   text-align: center;
-  color: #666;
-  line-height: 1.6;
+  color: var(--c-ink-3);
+  line-height: 1.65;
 }
 </style>

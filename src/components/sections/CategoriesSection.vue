@@ -5,8 +5,9 @@ import { categories } from '@/data/categories'
 </script>
 
 <template>
-  <BaseSection id="categories">
+  <BaseSection id="categories" tone="soft">
     <SectionTitle
+      eyebrow="Категории"
       title="Что можно заказать"
       subtitle="Выкупаем практически всё — от одежды до электроники"
     />
@@ -27,16 +28,26 @@ import { categories } from '@/data/categories'
   gap: 20px;
 }
 .cats__card {
-  padding: 28px 24px;
-  border: 1px solid #eee;
-  border-radius: 16px;
-  transition: border-color .2s, transform .2s;
+  padding: 32px 28px;
+  background: #fff;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--sh-sm);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 .cats__card:hover {
-  border-color: #229ED9;
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lg);
+  border-color: transparent;
 }
-.cats__icon { font-size: 32px; margin-bottom: 12px; }
-.cats__card h3 { font-size: 17px; margin: 0 0 6px; }
-.cats__card p { color: #666; font-size: 14px; margin: 0; }
+.cats__icon {
+  font-size: 30px;
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  border-radius: 16px;
+  background: var(--c-accent-soft);
+  margin-bottom: 20px;
+}
+.cats__card h3 { font-size: 18px; margin-bottom: 8px; }
+.cats__card p  { color: var(--c-ink-3); font-size: 15px; line-height: 1.55; }
 </style>

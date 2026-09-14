@@ -1,12 +1,17 @@
 <script setup>
 defineProps({
-  id: { type: String, default: null },
-  narrow: { type: Boolean, default: false },
+  id:      { type: String, default: null },
+  tone:    { type: String, default: 'default' }, // default | soft | mute
+  narrow:  { type: Boolean, default: false },
 })
 </script>
 
 <template>
-  <section :id="id" class="section" :class="{ 'section--narrow': narrow }">
+  <section
+    :id="id"
+    class="section"
+    :class="[`section--${tone}`, { 'section--narrow': narrow }]"
+  >
     <div class="container">
       <slot />
     </div>
@@ -14,7 +19,15 @@ defineProps({
 </template>
 
 <style scoped>
-.section { padding: 80px 0; }
-.section--narrow { padding: 48px 0; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section { padding: var(--s-py) 0; position: relative; }
+.section--default { background: var(--c-bg); }
+.section--soft    { background: var(--c-bg-soft); }
+.section--mute    { background: var(--c-bg-mute); }
+.section--narrow  { padding: calc(var(--s-py) * .6) 0; }
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 </style>
