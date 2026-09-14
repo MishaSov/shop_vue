@@ -104,21 +104,24 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .nav__link:hover::after { transform: scaleX(1); }
 
 .cta {
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 999px;
   border: none;
-  background: var(--g-accent);
+  background: var(--c-ink);
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: var(--sh-accent);
-  transition: transform .18s ease, box-shadow .18s ease;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 8px 20px rgba(43,38,34,.16);
 }
 .cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(43,127,255,.45);
+  background: #1a1614;
+  box-shadow: 0 14px 30px rgba(43,38,34,.24);
 }
+
+.nav__link::after { background: var(--c-accent); }
 
 @media (max-width: 860px) {
   .nav { display: none; }

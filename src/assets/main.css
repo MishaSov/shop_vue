@@ -1,48 +1,45 @@
 /* ============ Design tokens ============ */
 :root {
-  /* Палитра */
-  --c-bg: #ffffff;
-  --c-bg-soft: #f7f8fb;
-  --c-bg-mute: #eef1f6;
-  --c-ink: #0d1220;
-  --c-ink-2: #2a3142;
-  --c-ink-3: #6b7280;
-  --c-line: #e6e9f0;
+  /* Мягкая пастельная палитра */
+  --c-bg: #fdfcfa;
+  --c-bg-soft: #f6f2ee;
+  --c-bg-mute: #efe9e3;
+  --c-ink: #2b2622;
+  --c-ink-2: #4a423c;
+  --c-ink-3: #8c8179;
+  --c-line: #e8e1da;
 
-  --c-accent: #2b7fff;
-  --c-accent-2: #6c5ce7;
-  --c-accent-soft: #eaf1ff;
+  --c-accent: #c79a7b;        /* тёплый карамельный */
+  --c-accent-2: #a8b8a0;      /* шалфейный */
+  --c-accent-3: #d9b8a8;      /* пудровый */
+  --c-accent-soft: #f3e6dc;
 
   /* Градиенты */
-  --g-accent: linear-gradient(135deg, #2b7fff 0%, #6c5ce7 100%);
-  --g-hero: radial-gradient(1200px 600px at 20% -10%, #e6f0ff 0%, transparent 60%),
-            radial-gradient(900px 500px at 100% 0%, #efeaff 0%, transparent 55%),
-            #ffffff;
+  --g-accent: linear-gradient(135deg, #c79a7b 0%, #d9b8a8 100%);
+  --g-warm:   linear-gradient(135deg, #f7ede5 0%, #f0e2d4 100%);
+  --g-sage:   linear-gradient(135deg, #e7ece2 0%, #d8e0d0 100%);
 
-  /* Тени */
-  --sh-sm: 0 1px 2px rgba(13,18,32,.06), 0 1px 1px rgba(13,18,32,.04);
-  --sh-md: 0 8px 24px rgba(13,18,32,.08);
-  --sh-lg: 0 20px 50px rgba(13,18,32,.12);
-  --sh-accent: 0 12px 30px rgba(43,127,255,.35);
+  /* Тени — мягкие, многослойные */
+  --sh-sm: 0 1px 2px rgba(43,38,34,.04), 0 1px 1px rgba(43,38,34,.03);
+  --sh-md: 0 8px 24px rgba(43,38,34,.06), 0 2px 6px rgba(43,38,34,.04);
+  --sh-lg: 0 24px 60px rgba(43,38,34,.10), 0 8px 20px rgba(43,38,34,.05);
+  --sh-xl: 0 40px 100px rgba(43,38,34,.14), 0 12px 30px rgba(43,38,34,.06);
+  --sh-accent: 0 12px 32px rgba(199,154,123,.28);
 
-  /* Радиусы */
-  --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 24px;
-  --r-xl: 32px;
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-xl: 40px;
 
-  /* Отступы секций */
-  --s-py: clamp(64px, 8vw, 120px);
+  --s-py: clamp(72px, 9vw, 140px);
 
-  /* Типографика */
   --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             'Helvetica Neue', Arial, sans-serif;
+  --f-serif: 'Fraunces', 'Playfair Display', Georgia, serif;
 }
 
 /* ============ Reset ============ */
-*,
-*::before,
-*::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -53,40 +50,62 @@ body {
   margin: 0;
   font-family: var(--f-sans);
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--c-ink);
   background: var(--c-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'ss01', 'cv11';
 }
 
 h1, h2, h3, h4 {
   margin: 0;
-  font-weight: 700;
   color: var(--c-ink);
-  letter-spacing: -0.02em;
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
-
-h1 { font-size: clamp(32px, 5.2vw, 60px); }
-h2 { font-size: clamp(26px, 3.6vw, 44px); }
-h3 { font-size: clamp(17px, 1.4vw, 20px); }
+h1 {
+  font-family: var(--f-serif);
+  font-weight: 500;
+  font-size: clamp(36px, 5.8vw, 72px);
+  letter-spacing: -0.03em;
+}
+h2 {
+  font-family: var(--f-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 52px);
+  letter-spacing: -0.025em;
+}
+h3 { font-size: clamp(17px, 1.4vw, 20px); font-weight: 600; }
 
 p { margin: 0; color: var(--c-ink-2); }
-
 a { color: inherit; text-decoration: none; }
-
 img, svg { display: block; max-width: 100%; }
-
 button { font-family: inherit; }
 
 ::selection { background: var(--c-accent-soft); color: var(--c-accent); }
 
-/* ============ App container ============ */
-#app {
-  display: block;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
+/* ============ App ============ */
+#app { display: block; }
+
+/* ============ Reveal on scroll ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.22,1,.36,1),
+              transform .8s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal--d1 { transition-delay: .08s; }
+.reveal--d2 { transition-delay: .16s; }
+.reveal--d3 { transition-delay: .24s; }
+.reveal--d4 { transition-delay: .32s; }
+.reveal--d5 { transition-delay: .40s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
 }

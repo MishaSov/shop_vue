@@ -1,4 +1,5 @@
 <script setup>
+import { useReveal } from '@/composables/useReveal'
 import TheHeader from '@/components/layout/TheHeader.vue'
 import TheFooter from '@/components/layout/TheFooter.vue'
 import HeroSection from '@/components/sections/HeroSection.vue'
@@ -10,6 +11,8 @@ import HowItWorksSection from '@/components/sections/HowItWorksSection.vue'
 import DeliverySection from '@/components/sections/DeliverySection.vue'
 import FaqSection from '@/components/sections/FaqSection.vue'
 import ContactsSection from '@/components/sections/ContactsSection.vue'
+
+useReveal()
 </script>
 
 <template>

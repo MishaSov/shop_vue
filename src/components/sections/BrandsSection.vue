@@ -28,7 +28,7 @@ import { brands } from '@/data/brands'
   margin: 0;
 }
 .brands__item {
-  padding: 12px 22px;
+  padding: 12px 24px;
   background: #fff;
   border: 1px solid var(--c-line);
   border-radius: 999px;
@@ -36,14 +36,15 @@ import { brands } from '@/data/brands'
   font-size: 15px;
   color: var(--c-ink-2);
   box-shadow: var(--sh-sm);
-  transition: transform .18s ease, border-color .18s ease,
-              color .18s ease, box-shadow .18s ease;
-  cursor: default;
+  transition: transform .25s cubic-bezier(.22,1,.36,1),
+              border-color .25s ease, color .25s ease,
+              box-shadow .25s ease, background .25s ease;
 }
 .brands__item:hover {
   transform: translateY(-3px);
   border-color: var(--c-accent);
   color: var(--c-accent);
+  background: var(--c-accent-soft);
   box-shadow: var(--sh-md);
 }
 </style>
