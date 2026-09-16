@@ -18,15 +18,15 @@ const { openChannel, contacts } = useTelegram()
       <BaseButton size="lg" @click="openChannel">
         Перейти в Telegram-канал
       </BaseButton>
-      <a :href="contacts.whatsapp" target="_blank" rel="noopener" class="cta__link">
+      <!-- <a :href="contacts.whatsapp" target="_blank" rel="noopener" class="cta__link">
         WhatsApp · {{ contacts.phone }}
-      </a>
+      </a> -->
     </div>
-    <div class="legal">
+    <!-- <div class="legal">
       <p>{{ contacts.owner }}</p>
       <p>ИНН {{ contacts.inn }} · ОГРНИП {{ contacts.ogrnip }}</p>
       <p>{{ contacts.legalAddress }}</p>
-    </div>
+    </div> -->
   </BaseSection>
 </template>
 

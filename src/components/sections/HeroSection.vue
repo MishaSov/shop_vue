@@ -7,9 +7,9 @@ import { useTelegram } from '@/composables/useTelegram'
 const { openChannel } = useTelegram()
 
 const stats = [
-  { value: '500+',  label: 'брендов' },
-  { value: '−90%',  label: 'экономия' },
-  { value: '4–6',   label: 'недель' },
+  { value: '500+', label: 'брендов' },
+  { value: '−90%', label: 'экономия' },
+  { value: '4–6', label: 'недель' },
 ]
 
 
@@ -29,15 +29,15 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 
 <template>
   <section class="hero">
-     <AnimatedBackground />
+    <AnimatedBackground />
 
     <div class="hero__inner">
       <!-- Левая колонка -->
       <div class="hero__copy">
-        <span class="hero__badge">
+        <!-- <span class="hero__badge">
           <span class="hero__dot"></span>
           Байер-сервис с 2021 года
-        </span>
+        </span> -->
 
         <h1 class="hero__title">
           Оригинальные бренды
@@ -68,30 +68,18 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
       </div>
 
       <!-- Правая колонка — фотоколлаж -->
-      <div
-        class="hero__gallery"
-        :style="{ transform: `translate3d(${mouse.x}px, ${mouse.y}px, 0)` }"
-      >
+      <div class="hero__gallery" :style="{ transform: `translate3d(${mouse.x}px, ${mouse.y}px, 0)` }">
         <div class="hero__photo hero__photo--main">
-          <img
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=900&q=80&auto=format&fit=crop"
-            alt="Модный образ"
-            loading="eager"
-          />
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=900&q=80&auto=format&fit=crop"
+            alt="Модный образ" loading="eager" />
         </div>
         <div class="hero__photo hero__photo--sm hero__photo--a">
-          <img
-            src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&q=80&auto=format&fit=crop"
-            alt="Сумка"
-            loading="lazy"
-          />
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&q=80&auto=format&fit=crop"
+            alt="Сумка" loading="lazy" />
         </div>
         <div class="hero__photo hero__photo--sm hero__photo--b">
-          <img
-            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80&auto=format&fit=crop"
-            alt="Обувь"
-            loading="lazy"
-          />
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80&auto=format&fit=crop"
+            alt="Обувь" loading="lazy" />
         </div>
 
         <div class="hero__float hero__float--price">
@@ -128,9 +116,11 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 }
 
 /* -------- Копия -------- */
-.hero__copy { max-width: 580px; }
+.hero__copy {
+  max-width: 580px;
+}
 
-.hero__badge {
+/* .hero__badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -150,12 +140,13 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   border-radius: 50%;
   background: #7fa563;
   box-shadow: 0 0 0 4px rgba(127,165,99,.2);
-}
+} */
 
 .hero__title {
   margin-bottom: 24px;
   font-weight: 500;
 }
+
 .hero__title em {
   font-style: italic;
   background: var(--g-accent);
@@ -187,11 +178,13 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   padding: 0;
   margin: 0;
 }
+
 .hero__stats li {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
+
 .hero__stats strong {
   font-family: var(--f-serif);
   font-size: clamp(22px, 2.2vw, 30px);
@@ -199,6 +192,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   color: var(--c-ink);
   letter-spacing: -0.02em;
 }
+
 .hero__stats span {
   font-size: 12px;
   color: var(--c-ink-3);
@@ -210,7 +204,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 .hero__gallery {
   position: relative;
   aspect-ratio: 1 / 1;
-  transition: transform .35s cubic-bezier(.22,1,.36,1);
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1);
 }
 
 .hero__photo {
@@ -220,29 +214,38 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   box-shadow: var(--sh-xl);
   background: #fff;
 }
+
 .hero__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s cubic-bezier(.22,1,.36,1);
+  transition: transform 1s cubic-bezier(.22, 1, .36, 1);
 }
-.hero__photo:hover img { transform: scale(1.06); }
+
+.hero__photo:hover img {
+  transform: scale(1.06);
+}
 
 .hero__photo--main {
   inset: 6% 12% 18% 6%;
   border-radius: var(--r-xl);
 }
+
 .hero__photo--sm {
   width: 40%;
   aspect-ratio: 1 / 1;
   border-radius: var(--r-lg);
 }
+
 .hero__photo--a {
-  top: 0; right: 0;
+  top: 0;
+  right: 0;
   transform: rotate(4deg);
 }
+
 .hero__photo--b {
-  bottom: 0; right: 4%;
+  bottom: 0;
+  right: 4%;
   transform: rotate(-3deg);
   width: 44%;
 }
@@ -250,9 +253,9 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 /* Плавающие плашки */
 .hero__float {
   position: absolute;
-  background: rgba(255,255,255,.85);
+  background: rgba(255, 255, 255, .85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.9);
+  border: 1px solid rgba(255, 255, 255, .9);
   border-radius: 16px;
   box-shadow: var(--sh-lg);
   padding: 12px 18px;
@@ -260,18 +263,22 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   font-weight: 600;
   animation: float 6s ease-in-out infinite;
 }
+
 .hero__float--price {
-  bottom: 10%; left: -6%;
+  bottom: 10%;
+  left: -6%;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
+
 .hero__float--price span {
   color: var(--c-ink-3);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .08em;
 }
+
 .hero__float--price strong {
   font-family: var(--f-serif);
   font-size: 20px;
@@ -279,29 +286,47 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   color: var(--c-accent);
   letter-spacing: -0.02em;
 }
+
 .hero__float--ship {
-  top: 8%; left: 4%;
+  top: 8%;
+  left: 4%;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   animation-delay: 1.2s;
 }
+
 .hero__float--ship .dot {
-  width: 8px; height: 8px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #7fa563;
-  box-shadow: 0 0 0 4px rgba(127,165,99,.2);
+  box-shadow: 0 0 0 4px rgba(127, 165, 99, .2);
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* -------- Адаптив -------- */
 @media (max-width: 1000px) {
-  .hero__float--price { left: 4%; bottom: 4%; }
-  .hero__float--ship  { left: 8%; top: 4%; }
+  .hero__float--price {
+    left: 4%;
+    bottom: 4%;
+  }
+
+  .hero__float--ship {
+    left: 8%;
+    top: 4%;
+  }
 }
 
 /* Планшет/большой телефон: одна колонка, галерея сверху */
@@ -310,44 +335,79 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .hero__copy {
     max-width: 100%;
     text-align: center;
-    order: 2;                 /* текст — снизу */
+    order: 2;
+    /* текст — снизу */
   }
+
   .hero__gallery {
-    order: 1;                 /* галерея — сверху */
+    order: 1;
+    /* галерея — сверху */
     max-width: 460px;
     margin: 0 auto;
     width: 100%;
     aspect-ratio: 4 / 3;
   }
-  .hero__lead, .hero__title { margin-left: auto; margin-right: auto; }
-  .hero__actions { justify-content: center; }
-  .hero__stats   { justify-content: center; }
+
+  .hero__lead,
+  .hero__title {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__stats {
+    justify-content: center;
+  }
 
   /* Плашки внутри галереи, не выходят за границы */
-  .hero__float--price { left: 6%; bottom: 8%; }
-  .hero__float--ship  { left: 4%; top: 6%; }
+  .hero__float--price {
+    left: 6%;
+    bottom: 8%;
+  }
+
+  .hero__float--ship {
+    left: 4%;
+    top: 6%;
+  }
 }
 
 /* Телефон: полностью убираем коллаж и плашки */
 @media (max-width: 640px) {
-  .hero__gallery { display: none; }
+  .hero__gallery {
+    display: none;
+  }
 
-  .hero__copy { text-align: center; }
+  .hero__copy {
+    text-align: center;
+  }
 
   .hero__stats {
     gap: 28px;
     flex-wrap: wrap;
   }
-  .hero__stats strong { font-size: 22px; }
-  .hero__stats span   { font-size: 11px; }
+
+  .hero__stats strong {
+    font-size: 22px;
+  }
+
+  .hero__stats span {
+    font-size: 11px;
+  }
 
   .hero__actions {
     flex-direction: column;
     align-items: stretch;
   }
-  .hero__actions :deep(.btn) { width: 100%; }
+
+  .hero__actions :deep(.btn) {
+    width: 100%;
+  }
 }
 </style>

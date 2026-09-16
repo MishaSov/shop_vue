@@ -5,11 +5,11 @@ import { useTelegram } from '@/composables/useTelegram'
 const { openChannel } = useTelegram()
 
 const links = [
-  { href: '#brands',     label: 'Бренды' },
+  { href: '#brands', label: 'Бренды' },
   { href: '#categories', label: 'Категории' },
-  { href: '#how',        label: 'Как заказать' },
-  { href: '#faq',        label: 'FAQ' },
-  { href: '#contacts',   label: 'Контакты' },
+  { href: '#how', label: 'Как заказать' },
+  { href: '#faq', label: 'FAQ' },
+  { href: '#contacts', label: 'Контакты' },
 ]
 
 const scrolled = ref(false)
@@ -22,7 +22,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   <header class="header" :class="{ 'header--scrolled': scrolled }">
     <div class="header__inner">
       <a href="#" class="logo">
-        Shop<span>US</span>
+        <em>M.K</em> <span>select</span>
       </a>
 
       <nav class="nav">
@@ -44,15 +44,16 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   top: 0;
   z-index: 100;
   transition: background .25s ease, box-shadow .25s ease,
-              border-color .25s ease, backdrop-filter .25s ease;
+    border-color .25s ease, backdrop-filter .25s ease;
   border-bottom: 1px solid transparent;
 }
+
 .header--scrolled {
-  background: rgba(255,255,255,.75);
+  background: rgba(255, 255, 255, .75);
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom-color: var(--c-line);
-  box-shadow: 0 1px 0 rgba(13,18,32,.02);
+  box-shadow: 0 1px 0 rgba(13, 18, 32, .02);
 }
 
 .header__inner {
@@ -66,14 +67,28 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 .logo {
   font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
 }
+
+.logo em {
+  font-family: var(--f-serif);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+}
+
 .logo span {
   background: var(--g-accent);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-weight: 600;
 }
 
 .nav {
@@ -81,6 +96,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   gap: 28px;
   margin-left: auto;
 }
+
 .nav__link {
   font-size: 15px;
   font-weight: 500;
@@ -89,10 +105,13 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   padding: 6px 0;
   transition: color .18s ease;
 }
+
 .nav__link::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 2px;
   background: var(--g-accent);
   transform: scaleX(0);
@@ -100,8 +119,14 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   transition: transform .22s ease;
   border-radius: 2px;
 }
-.nav__link:hover { color: var(--c-ink); }
-.nav__link:hover::after { transform: scaleX(1); }
+
+.nav__link:hover {
+  color: var(--c-ink);
+}
+
+.nav__link:hover::after {
+  transform: scaleX(1);
+}
 
 .cta {
   padding: 10px 22px;
@@ -113,18 +138,26 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   font-size: 14px;
   cursor: pointer;
   transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-  box-shadow: 0 8px 20px rgba(43,38,34,.16);
+  box-shadow: 0 8px 20px rgba(43, 38, 34, .16);
 }
+
 .cta:hover {
   transform: translateY(-2px);
   background: #1a1614;
-  box-shadow: 0 14px 30px rgba(43,38,34,.24);
+  box-shadow: 0 14px 30px rgba(43, 38, 34, .24);
 }
 
-.nav__link::after { background: var(--c-accent); }
+.nav__link::after {
+  background: var(--c-accent);
+}
 
 @media (max-width: 860px) {
-  .nav { display: none; }
-  .header__inner { justify-content: space-between; }
+  .nav {
+    display: none;
+  }
+
+  .header__inner {
+    justify-content: space-between;
+  }
 }
 </style>

@@ -12,10 +12,7 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
           alt="Шопинг"
           loading="lazy"
         />
-        <div class="about__badge">
-          <strong>2021</strong>
-          <span>работаем с</span>
-        </div>
+       
       </div>
 
       <div class="about__copy reveal reveal--d2">
@@ -56,30 +53,6 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
 .about__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-}
-.about__badge {
-  position: absolute;
-  bottom: 24px; left: 24px;
-  background: rgba(255,255,255,.9);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.95);
-  border-radius: 16px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  box-shadow: var(--sh-md);
-}
-.about__badge strong {
-  font-family: var(--f-serif);
-  font-size: 26px;
-  font-weight: 500;
-  color: var(--c-accent);
-  letter-spacing: -0.02em;
-}
-.about__badge span {
-  font-size: 13px;
-  color: var(--c-ink-3);
 }
 
 .about__copy :deep(.st) { margin-bottom: 28px; }
