@@ -1,9 +1,5 @@
 import { onMounted, onUnmounted } from 'vue'
 
-/**
- * Навешивает .is-visible на все .reveal-элементы при попадании в viewport.
- * Работает через один общий IntersectionObserver (эффективно).
- */
 export function useReveal() {
   let observer = null
 
@@ -12,21 +8,19 @@ export function useReveal() {
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
+          // Показываем, только когда элемент в зоне видимости.
+          // Не отключаем observer — теперь анимация обратима.
+          entry.target.classList.toggle('is-visible', entry.isIntersecting)
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+      {
+        threshold: 0.15,
+        rootMargin: '-40px 0px -40px 0px',
+      }
     )
     els.forEach((el) => observer.observe(el))
   }
 
-  onMounted(() => {
-    // Ждём монтирования всех секций
-    requestAnimationFrame(init)
-  })
-
+  onMounted(() => requestAnimationFrame(init))
   onUnmounted(() => observer?.disconnect())
 }

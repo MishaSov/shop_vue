@@ -174,20 +174,9 @@ button { font-family: inherit; }
   .bg-blob { filter: blur(60px); }
 }
 
-/* ============ Fullscreen snap scroll ============ */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
-}
-
-body {
-  /* Ничего не меняем — снап работает на скролл-контейнере */
-}
-
-/* Snap включаем только на больших экранах и при желании пользователя */
-@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
-  main {
-    scroll-snap-type: y proximity;  /* ← proximity мягче, чем mandatory */
+@media (max-width: 899px) {
+  body {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 }
 

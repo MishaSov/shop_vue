@@ -11,6 +11,7 @@ import HowItWorksSection from '@/components/sections/HowItWorksSection.vue'
 import DeliverySection from '@/components/sections/DeliverySection.vue'
 import FaqSection from '@/components/sections/FaqSection.vue'
 import ContactsSection from '@/components/sections/ContactsSection.vue'
+import StickyCta from '@/components/ui/StickyCta.vue'
 
 useReveal()
 </script>
@@ -29,4 +30,5 @@ useReveal()
     <ContactsSection />
   </main>
   <TheFooter />
+  <StickyCta />
 </template>

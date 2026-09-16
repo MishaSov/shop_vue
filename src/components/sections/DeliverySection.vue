@@ -3,10 +3,10 @@ import BaseSection from '@/components/ui/BaseSection.vue'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 
 const info = [
-    { label: 'Стоимость', value: '2,5–3,5 ₽ / грамм' },
+    // { label: 'Стоимость', value: '2,5–3,5 ₽ / грамм' },
     { label: 'Срок', value: '4–6 недель' },
     { label: 'Ускоренная', value: '10–14 дней' },
-    { label: 'Курс', value: '1$ = 135–145 ₽' },
+    { label: 'Курс', value: '1$ = 130 ₽' },
 ]
 </script>
 

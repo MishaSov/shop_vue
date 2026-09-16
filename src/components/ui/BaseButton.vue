@@ -11,7 +11,7 @@ defineProps({
   <component
     :is="href ? 'a' : tag"
     :href="href"
-    :target="href ? '_blank' : null"
+    :target="isExternal ? '_blank' : null"
     :rel="href ? 'noopener' : null"
     class="btn"
     :class="[`btn--${variant}`, `btn--${size}`]"

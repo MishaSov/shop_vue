@@ -37,6 +37,7 @@ import { categories } from '@/data/categories'
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
 }
+
 .cats__card {
   background: #fff;
   border-radius: var(--r-lg);
@@ -51,6 +52,7 @@ import { categories } from '@/data/categories'
   box-shadow: var(--sh-xl);
   border-color: transparent;
 }
+
 .cats__media {
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -62,14 +64,46 @@ import { categories } from '@/data/categories'
 }
 .cats__card:hover .cats__media img { transform: scale(1.08); }
 
-.cats__body {
-  padding: 24px 24px 28px;
-}
-.cats__icon {
-  display: inline-block;
-  font-size: 22px;
-  margin-bottom: 12px;
-}
+.cats__body { padding: 24px 24px 28px; }
+.cats__icon { display: inline-block; font-size: 22px; margin-bottom: 12px; }
 .cats__body h3 { font-size: 18px; margin-bottom: 6px; }
 .cats__body p  { color: var(--c-ink-3); font-size: 14px; line-height: 1.5; }
+
+/* ============ Мобильная карусель ============ */
+@media (max-width: 700px) {
+  .cats {
+    display: flex;
+    grid-template-columns: none;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 20px 20px;
+    margin: 0 -24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-padding-left: 20px;
+  }
+  .cats::-webkit-scrollbar { display: none; }
+
+  .cats__card {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+    /* Отключаем reveal-анимации внутри карусели — они будут дёргаться */
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cats__card:hover { transform: none; box-shadow: var(--sh-md); }
+  .cats__card:active { transform: scale(.97) !important; }
+
+  /* Отключаем reveal-классы внутри карусели */
+  .cats__card.reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Подсказка-«свайп» — небольшая стрелка у правого края первой карточки */
+@media (max-width: 700px) {
+  .cats::after {
+    content: '';
+    flex: 0 0 20px;
+  }
+}
 </style>

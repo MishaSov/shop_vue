@@ -8,11 +8,10 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
     <div class="about">
       <div class="about__media reveal">
         <img
-          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=80&auto=format&fit=crop"
-          alt="Шопинг"
+          src="@/assets/maria.jpg"
+          alt="Мария — основатель байер-сервиса"
           loading="lazy"
         />
-       
       </div>
 
       <div class="about__copy reveal reveal--d2">
@@ -20,15 +19,14 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
           align="left"
           eyebrow="О нас"
           title="Почему выбирают нас"
-          subtitle="С 2021 года помогаем покупать любимые бренды из США без переплат и сложностей"
         />
         <p class="about__text">
-          Мы подбираем, оформляем, отслеживаем и доставляем — вам остаётся
-          только наслаждаться покупкой.
+          Я Мария, основатель байер-сервиса персонального шопинга в США и Европе.
         </p>
         <p class="about__text">
-          Только оригинальные товары, проверенные сайты, скидки до&nbsp;−90%,
-          подбор по фото и полное сопровождение на всех этапах.
+          Мы помогаем находить и приобретать желанные вещи напрямую из лучших
+          магазинов и бутиков Америки и Европы — с персональным подбором,
+          вниманием к деталям и заботой на каждом этапе покупки.
         </p>
       </div>
     </div>
@@ -51,7 +49,8 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
   box-shadow: var(--sh-xl);
 }
 .about__media img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -66,6 +65,10 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
 
 @media (max-width: 880px) {
   .about { grid-template-columns: 1fr; }
-  .about__media { max-width: 460px; margin: 0 auto; aspect-ratio: 4 / 4; }
+  .about__media {
+    max-width: 460px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 4;
+  }
 }
 </style>
