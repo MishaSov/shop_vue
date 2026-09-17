@@ -15,10 +15,14 @@ const toggle = (i) => (opened.value = opened.value === i ? null : i)
             <div v-for="(item, i) in faq" :key="i" class="faq__item" :class="{ 'faq__item--open': opened === i }">
                 <button class="faq__q" @click="toggle(i)">
                     <span>{{ item.q }}</span>
-                    <span class="faq__icon">
+                    <span class="faq__icon" :class="{ 'faq__icon--open': opened === i }">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M1 7h12M7 1v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                                class="faq__icon-line faq__icon-line--v" />
+                            <!-- Горизонтальная -->
+                            <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" class="faq__icon-line faq__icon-line--h" />
+                            <!-- Вертикальная -->
+                            <line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" class="faq__icon-line faq__icon-line--v" />
                         </svg>
                     </span>
                 </button>
@@ -77,18 +81,26 @@ const toggle = (i) => (opened.value = opened.value === i ? null : i)
 }
 
 .faq__item--open .faq__icon {
-    background: var(--g-accent);
-    color: #fff;
+  background: var(--g-accent);
+  color: #fff;
 }
 
-.faq__icon-line--v {
-    transform-origin: center;
-    transition: transform .2s ease, opacity .2s ease;
+/* Линии иконки */
+.faq__icon-line {
+  transform-origin: 7px 7px;   /* центр viewBox */
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1),
+              opacity .2s ease;
 }
 
+/* Вертикальная — растворяется при открытии */
 .faq__item--open .faq__icon-line--v {
-    transform: scaleY(0);
-    opacity: 0;
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* Горизонтальная — поворачивается на 45° при открытии */
+.faq__item--open .faq__icon-line--h {
+  transform: rotate(45deg);
 }
 
 .faq__a {
