@@ -101,6 +101,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
   overflow: hidden;
   background: var(--g-warm);
   padding: clamp(56px, 8vw, 110px) 0 clamp(72px, 9vw, 130px);
+  
 }
 
 .hero__inner {

@@ -65,8 +65,15 @@ const toggle = (i) => (opened.value = opened.value === i ? null : i)
 }
 
 .faq__icon {
-    background: var(--c-accent-soft);
-    color: var(--c-accent);
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-accent-soft);
+  color: var(--c-accent);
+  flex: 0 0 auto;
+  transition: background .25s ease, color .25s ease;
 }
 
 .faq__item--open .faq__icon {
